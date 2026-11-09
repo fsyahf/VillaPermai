@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Villa Permai - temukan villa nyaman untuk liburan Anda.">
+  <title>Villa Permai | Temukan Penginapan Nyaman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Header dan navigasi utama -->
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navigasi utama">
+      <a class="brand" href="#beranda" aria-label="Villa Permai, beranda">
+        <span class="brand-mark">VP</span><span>Villa<span class="brand-light">Permai</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#beranda">Beranda</a>
+        <a href="#villa">Pilihan Villa</a>
+        <a href="#pemesanan">Pemesanan</a>
+        <a href="#riwayat">Riwayat</a>
+      </div>
+      <a class="nav-cta" href="#pemesanan">Pesan sekarang <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero / bagian pembuka -->
+    <section class="hero" id="beranda">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <p class="eyebrow hero-eyebrow">PENGALAMAN MENGINAP YANG BERKESAN</p>
+        <h1>Temukan tempat<br>istirahat <em>terbaik.</em></h1>
+        <p class="hero-description">Nikmati suasana nyaman, udara segar, dan momen berharga bersama orang tersayang.</p>
+        <a class="button button-light" href="#villa">Jelajahi villa <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-note"><span class="note-line"></span> PILIHAN PENGINAPAN UNTUK SETIAP CERITA</div>
+    </section>
+
+    <!-- Daftar villa yang dirender oleh JavaScript -->
+    <section class="section container" id="villa">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PILIHAN UNTUK ANDA</p>
+          <h2>Temukan villa <em>favorit.</em></h2>
+          <p class="section-subtitle">Tempat nyaman untuk melepas penat dan menciptakan kenangan.</p>
+        </div>
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input type="search" id="searchVilla" placeholder="Cari nama atau lokasi..." aria-label="Cari villa">
+        </label>
+      </div>
+      <p id="villaCount" class="result-count" aria-live="polite"></p>
+      <div id="villaList" class="villa-grid">
+        <!-- Kartu villa dibuat melalui createElement() dan appendChild(). -->
+      </div>
+      <p id="emptyVilla" class="empty-state" hidden>Villa tidak ditemukan. Coba kata kunci lain.</p>
+    </section>
+
+    <!-- Form pemesanan -->
+    <section class="booking-section" id="pemesanan">
+      <div class="container booking-layout">
+        <div class="booking-intro">
+          <p class="eyebrow">MULAI RENCANAKAN LIBURAN</p>
+          <h2>Pesan villa<br><em>impian Anda.</em></h2>
+          <p>Isi detail pemesanan di samping. Estimasi biaya akan dihitung secara otomatis sebelum pesanan disimpan.</p>
+          <div class="booking-perk"><span>✓</span> Proses pemesanan sederhana</div>
+          <div class="booking-perk"><span>✓</span> Rincian biaya transparan</div>
+          <div class="booking-perk"><span>✓</span> Riwayat tersimpan di perangkat</div>
+        </div>
+
+        <form id="bookingForm" class="booking-form" novalidate>
+          <div class="form-heading">
+            <div><p class="eyebrow">FORMULIR</p><h3>Detail pemesanan</h3></div>
+            <span class="form-step">01 / 01</span>
+          </div>
+
+          <div class="form-group">
+            <label for="customerName">Nama pemesan</label>
+            <input type="text" id="customerName" name="customerName" placeholder="Masukkan nama lengkap" maxlength="80" required>
+            <small class="field-error" id="nameError"></small>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="villaSelect">Pilih Villa</label>
+              <select id="villaSelect" required>
+                <option value="">Pilih Villa</option>
+              </select>
+              <small id="villaError" class="field-error"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="guestCount">Jumlah Tamu</label>
+              <input
+                type="number"
+                id="guestCount"
+                min="1"
+                required>
+              <small id="guestError" class="field-error"></small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="checkIn">
+                Tanggal Check In
+              </label>
+              <input
+                type="date"
+                id="checkIn"
+                required>
+              <small id="dateError" class="field-error"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="checkOut">
+                Tanggal Check Out
+              </label>
+              <input
+                type="date"
+                id="checkOut"
+                required>
+              <small id="checkoutError" class="field-error"></small>
+            </div>
+          </div>
+
+          <div class="price-summary">
+            <div><span>Harga per malam</span><strong id="pricePerNight">—</strong></div>
+            <div class="total-row"><span>Estimasi total</span><strong id="totalPrice">Rp0</strong></div>
+            <p>Perhitungan: harga villa × jumlah malam × jumlah tamu.</p>
+          </div>
+
+          <button
+            type="button"
+            id="checkAvailability"
+            class="button">
+            Cek Ketersediaan
+          </button>
+
+          <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+
+          <button
+            class="button button-primary submit-button"
+            type="submit">
+            Pesan Sekarang →
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Riwayat pemesanan dari localStorage -->
+    <section class="section container history-section" id="riwayat">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CATATAN PERJALANAN ANDA</p>
+          <h2>Riwayat <em>pemesanan.</em></h2>
+          <p class="section-subtitle">Daftar pemesanan yang tersimpan pada browser perangkat ini.</p>
+        </div>
+        <span class="history-label">PENYIMPANAN LOKAL</span>
+      </div>
+      <div id="bookingHistory" class="history-list">
+        <!-- Riwayat dibuat melalui JavaScript. -->
+      </div>
+      <p id="emptyHistory" class="empty-state">Belum ada pemesanan. Pesanan Anda akan muncul di sini.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <a class="brand footer-brand" href="#beranda"><span class="brand-mark">VP</span><span>Villa<span class="brand-light">Permai</span></span></a>
+      <p>Tempat nyaman untuk cerita yang tak terlupakan.</p>
+      <span>© <span id="currentYear"></span> Villa Permai. Dibuat dengan sepenuh hati.</span>
+    </div>
+  </footer>
+</body>
+</html>
