@@ -1,0 +1,18 @@
+# File dan folder sistem operasi
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor dan IDE
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Log dan file sementara
+*.log
+*.tmp
+*.bak
+
+# Dependency (tidak digunakan pada project ini, disiapkan jika kelak diperlukan)
+node_modules/
