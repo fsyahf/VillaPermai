@@ -1,0 +1,190 @@
+/* =========================================================
+   VILLA PERMAI — stylesheet utama
+   Palet: biru navy, biru cerah, putih, dan abu-abu lembut.
+   ========================================================= */
+
+/* 1. Reset ringan dan variabel desain */
+:root {
+  --navy: #102c46;
+  --blue: #2676a8;
+  --blue-dark: #1b5d88;
+  --sky: #eaf4f9;
+  --ink: #183247;
+  --muted: #728391;
+  --line: #e2eaf0;
+  --white: #ffffff;
+  --surface: #f6f9fb;
+  --shadow: 0 18px 50px rgba(16, 44, 70, .09);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--white);
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+.container { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+
+/* 2. Header dan navigasi */
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(255,255,255,.96);
+  border-bottom: 1px solid rgba(226,234,240,.8);
+  backdrop-filter: blur(14px);
+}
+.navbar { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--navy); font-size: 19px; font-weight: 700; letter-spacing: -.7px; }
+.brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px 10px 10px 3px; color: white; background: var(--blue); font-size: 12px; letter-spacing: 0; }
+.brand-light { color: var(--blue); font-weight: 500; }
+.nav-links { display: flex; align-items: center; gap: 32px; color: #627584; font-size: 13px; font-weight: 600; }
+.nav-links a:hover { color: var(--blue); }
+.nav-cta { padding: 11px 17px; border-radius: 6px; background: var(--navy); color: white; font-size: 12px; font-weight: 700; }
+.nav-cta span { margin-left: 8px; }
+
+/* 3. Hero */
+.hero {
+  min-height: 560px; position: relative; display: flex; align-items: center;
+  color: white; overflow: hidden;
+  background: #183b55 url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85") center 52%/cover no-repeat;
+}
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(9,31,49,.88), rgba(9,31,49,.55) 48%, rgba(9,31,49,.08)); }
+.hero-content { position: relative; z-index: 1; padding-block: 90px; }
+.eyebrow { margin: 0 0 13px; color: var(--blue); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
+.hero-eyebrow { color: #b8d9ed; }
+h1, h2 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-weight: 600; letter-spacing: -1.3px; line-height: 1.12; }
+h1 { max-width: 650px; font-size: clamp(46px, 6vw, 70px); }
+h1 em, h2 em { color: #70b6df; font-weight: 600; }
+.hero-description { max-width: 430px; margin: 22px 0 30px; color: #e0eaf0; font-size: 14px; }
+.button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 22px; padding: 0 21px; border: 0; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: 700; transition: transform .2s, background .2s; }
+.button:hover { transform: translateY(-2px); }
+.button-light { background: white; color: var(--navy); }
+.hero-note { position: absolute; right: max(24px, calc((100vw - 1120px)/2)); bottom: 34px; display: flex; align-items: center; gap: 12px; color: #d4e2eb; font-size: 9px; letter-spacing: 1.5px; }
+.note-line { width: 35px; height: 1px; background: #9fc8e0; }
+
+/* 4. Section dan kartu villa */
+.section { padding-block: 92px; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 25px; }
+h2 { color: var(--navy); font-size: clamp(34px, 4vw, 45px); }
+h2 em { color: var(--blue); }
+.section-subtitle { margin: 12px 0 0; color: var(--muted); font-size: 13px; }
+.search-box { width: min(300px, 100%); height: 47px; display: flex; align-items: center; gap: 10px; padding: 0 14px; border: 1px solid var(--line); border-radius: 5px; color: var(--blue); }
+.search-box span { font-size: 25px; line-height: 1; }
+.search-box input { width: 100%; border: 0; outline: 0; color: var(--ink); font-size: 12px; background: transparent; }
+.result-count { min-height: 18px; margin: 0 0 13px; color: var(--muted); font-size: 11px; }
+.villa-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.villa-card { overflow: hidden; border: 1px solid var(--line); border-radius: 7px; background: white; transition: transform .25s, box-shadow .25s; }
+.villa-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.villa-image { width: 100%; height: 218px; display: block; object-fit: cover; background: var(--sky); }
+.villa-card-body { padding: 19px 19px 20px; }
+.villa-location { margin: 0 0 7px; color: var(--blue); font-size: 10px; font-weight: 700; letter-spacing: .5px; }
+.villa-name { margin: 0; color: var(--navy); font-family: "Playfair Display", Georgia, serif; font-size: 22px; font-weight: 600; }
+.villa-meta { display: flex; justify-content: space-between; gap: 10px; margin: 13px 0 17px; color: var(--muted); font-size: 11px; }
+.villa-price { display: flex; align-items: baseline; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--line); }
+.villa-price strong { color: var(--navy); font-size: 16px; }
+.villa-price span { color: var(--muted); font-size: 10px; }
+.card-book-link { color: var(--blue); font-size: 11px; font-weight: 700; }
+.empty-state { padding: 25px; border: 1px dashed #cbd9e2; border-radius: 6px; color: var(--muted); text-align: center; font-size: 13px; }
+
+/* 5. Bagian pemesanan */
+.booking-section { padding-block: 88px; background: var(--surface); }
+.booking-layout { display: grid; grid-template-columns: .85fr 1.15fr; align-items: start; gap: 80px; }
+.booking-intro { padding-top: 22px; }
+.booking-intro h2 { font-size: clamp(38px, 4vw, 50px); }
+.booking-intro > p:not(.eyebrow) { max-width: 370px; margin: 20px 0 27px; color: var(--muted); font-size: 13px; }
+.booking-perk { margin-top: 13px; color: #526b7b; font-size: 12px; }
+.booking-perk span { margin-right: 9px; color: var(--blue); font-weight: 700; }
+.booking-form { padding: 32px; border: 1px solid var(--line); border-radius: 8px; background: white; box-shadow: var(--shadow); }
+.form-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.form-heading .eyebrow { margin-bottom: 5px; }
+.form-heading h3 { margin: 0; color: var(--navy); font-family: "Playfair Display", Georgia, serif; font-size: 24px; }
+.form-step { color: #9aabb6; font-size: 10px; letter-spacing: 1px; }
+.form-group { min-width: 0; margin-bottom: 17px; }
+.form-group label { display: block; margin-bottom: 7px; color: #385267; font-size: 11px; font-weight: 700; }
+.form-group input, .form-group select { width: 100%; height: 45px; padding: 0 12px; border: 1px solid #dce6ec; border-radius: 4px; outline: none; background: white; color: var(--ink); font-size: 12px; }
+.form-group input:focus, .form-group select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(38,118,168,.1); }
+.form-group input::placeholder { color: #a6b3bc; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field-error { display: block; min-height: 14px; padding-top: 3px; color: #c34b4b; font-size: 10px; }
+.price-summary { margin: 4px 0 17px; padding: 16px; border-radius: 5px; background: #f2f7fa; }
+.price-summary > div { display: flex; justify-content: space-between; gap: 12px; color: #718391; font-size: 11px; }
+.price-summary strong { color: var(--navy); }
+.price-summary .total-row { margin-top: 11px; padding-top: 11px; border-top: 1px solid #dce7ed; color: var(--navy); font-size: 13px; font-weight: 700; }
+.price-summary .total-row strong { color: var(--blue); font-size: 19px; }
+.price-summary p { margin: 8px 0 0; color: #92a1aa; font-size: 9px; }
+.button-primary { width: 100%; color: white; background: var(--blue); }
+.button-primary:hover { background: var(--blue-dark); }
+.form-message { min-height: 18px; margin: 0 0 8px; font-size: 11px; }
+.form-message.success { color: #237b58; }
+.form-message.error { color: #c34b4b; }
+
+/* 6. Riwayat pemesanan */
+.history-section { padding-block: 85px 95px; }
+.history-label { padding: 8px 11px; border-radius: 3px; background: var(--sky); color: var(--blue); font-size: 9px; font-weight: 700; letter-spacing: .8px; }
+.history-list { display: grid; gap: 12px; }
+.history-card { display: grid; grid-template-columns: 1.2fr 1fr 1fr auto; align-items: center; gap: 18px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 6px; background: white; }
+.history-card h3 { margin: 0 0 3px; color: var(--navy); font-size: 13px; }
+.history-card p { margin: 0; color: var(--muted); font-size: 10px; }
+.history-total { color: var(--blue); font-size: 14px; font-weight: 700; }
+.history-delete { padding: 7px 10px; border: 1px solid #f0dada; border-radius: 4px; color: #b24d4d; background: white; cursor: pointer; font-size: 10px; }
+
+/* 7. Footer */
+.site-footer { padding-block: 28px; background: var(--navy); color: #b9cbd7; }
+.footer-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.footer-brand { color: white; }
+.footer-brand .brand-light { color: #8bc3e4; }
+.footer-content p, .footer-content > span { margin: 0; font-size: 10px; }
+
+/* 8. Tablet — lebar layar sampai 768px */
+@media (max-width: 768px) {
+  .container { width: min(100% - 36px, 680px); }
+  .navbar { min-height: 70px; }
+  .nav-links { gap: 16px; font-size: 11px; }
+  .nav-cta { display: none; }
+  .hero { min-height: 500px; }
+  .section { padding-block: 70px; }
+  .villa-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .villa-card:last-child { grid-column: 1 / -1; }
+  .villa-card:last-child .villa-image { height: 230px; }
+  .booking-layout { grid-template-columns: 1fr 1.2fr; gap: 28px; }
+  .booking-form { padding: 24px; }
+  .history-card { grid-template-columns: 1fr 1fr; }
+  .history-total { align-self: center; }
+  .footer-content { flex-wrap: wrap; }
+}
+
+/* 9. Mobile — lebar layar sampai 480px */
+@media (max-width: 480px) {
+  .container { width: calc(100% - 32px); }
+  .navbar { min-height: 64px; }
+  .brand { font-size: 17px; }
+  .nav-links { gap: 12px; font-size: 10px; }
+  .nav-links a:nth-child(3), .nav-links a:nth-child(4) { display: none; }
+  .hero { min-height: 480px; background-position: 58% center; }
+  .hero-content { padding-block: 70px; }
+  h1 { font-size: 46px; }
+  .hero-description { max-width: 310px; font-size: 12px; }
+  .hero-note { right: 16px; bottom: 20px; font-size: 7px; }
+  .section { padding-block: 58px; }
+  .section-heading { display: block; }
+  h2 { font-size: 36px; }
+  .search-box { width: 100%; margin-top: 22px; }
+  .villa-grid { grid-template-columns: 1fr; }
+  .villa-card:last-child { grid-column: auto; }
+  .villa-image, .villa-card:last-child .villa-image { height: 210px; }
+  .booking-section { padding-block: 60px; }
+  .booking-layout { grid-template-columns: 1fr; gap: 28px; }
+  .booking-intro { padding-top: 0; }
+  .booking-intro h2 { font-size: 40px; }
+  .booking-form { padding: 20px 16px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .history-section { padding-block: 60px; }
+  .history-label { display: inline-block; margin-top: 18px; }
+  .history-card { grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; }
+  .history-delete { justify-self: start; }
+  .footer-content { align-items: flex-start; flex-direction: column; }
+}
